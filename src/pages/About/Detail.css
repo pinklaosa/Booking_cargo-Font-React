@@ -1,0 +1,59 @@
+.TableDetail{
+    margin-top: 30px;
+    width: 80%;
+    margin-left:190px;
+    
+}.modalcolor{
+    background-color: aqua;
+}
+
+
+
+
+.label{
+    margin-top: 20px;
+    margin-left: 190px;
+    padding: 15px;
+    border: 3px solid gray;
+    border-radius: 15px;
+    font-size: 30px;
+    width:285px;
+
+}#ctn{
+    margin-left: 20px;
+    width: 25%;
+}.detailBox{
+    
+    margin-left: 45px;
+    margin-top: 50px;
+}.textQuantity{
+    margin-top: 20px;
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid gray;
+    width: 55%;
+    background-color: rgb(255, 255, 255);
+    
+    display: grid;
+    margin-left: 250px;
+}.Bodydetail{
+    display: flex;
+    flex-direction: row;
+}
+    
+.imgDetail{
+    margin-top:60px;
+    width: 100%;
+    height: 100%;
+
+    
+}.table{
+    box-shadow: 0px 0px 4px 2px rgb(150, 147, 147);
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    align-items: middle;
+}.addfild{
+    display: flex;
+}
+    

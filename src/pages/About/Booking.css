@@ -1,0 +1,19 @@
+
+
+.button-select{
+    background-color: #70EB28;
+    margin-left: 10ex;
+    border-radius: 10px;
+    width: 100px;
+    
+}tr,td,th{
+    
+    text-align: center;
+    
+}
+
+.TableBook{
+    width: 75%;
+    margin-left: 240px;
+    margin-top: 25px;
+}

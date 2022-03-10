@@ -1,0 +1,13 @@
+footer{
+    background-color: #787878;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}.footer-content{
+    text-align: center;
+    color: rgb(255, 255, 255);
+}.headLogin{
+    text-shadow: 3px 3px #B0B0B0;
+}

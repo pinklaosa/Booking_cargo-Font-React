@@ -1,0 +1,59 @@
+
+.textBox{
+   display: inline-block;
+   margin-left: 70px;
+   width: 40%;
+}.fullbox{
+    margin-left: 70px;
+}
+.buttonEdit{
+    display: inline-block;
+    background-color:#646464;
+    margin-top: 20px;
+   margin-left: 70px;
+    
+    width:120px;
+    
+}.buttonSave{
+    display: inline-block;
+    background-color: rgb(40, 204, 19);
+    color: white;
+    margin-top: 20px;
+    width: 120px;
+    margin-left: 3ex;
+    
+}
+.container1{
+    border: 5px solid gray;
+    border-radius:20px;
+    margin-top: 100px;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    
+}.container2{
+    
+    
+    display: inline-block;
+    margin-left:400px;
+    margin-top: 220px;
+        
+}.container2 header{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 34px;
+    text-align: center;
+    margin-top: 20px;
+}.container2 div{
+    margin-left: 50px;
+}
+
+
+
+
+.ty{
+    display: flex;
+    flex-direction: row;
+}.ty header{
+    font-family: 'Comfortaa', cursive;
+}

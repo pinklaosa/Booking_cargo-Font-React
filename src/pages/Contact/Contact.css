@@ -1,0 +1,21 @@
+.contact{
+  margin-top: 80px;
+  border: 3px solid gray;
+  padding: 60px;
+  border-radius: 20px;
+  margin-left: 100px;
+  
+  
+  width: 950px;
+}
+.contact p {
+    font-size: 20px;
+    border-radius: 20px;
+    color: black;
+    margin-left: 40px;
+}
+.contact p2{
+    text-decoration: underline;
+    margin-left: 40px;
+    
+}

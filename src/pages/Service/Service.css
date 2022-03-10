@@ -1,0 +1,18 @@
+.headHistory{
+    margin-top: 40px;
+    margin-left: 190px;
+    padding: 15px;
+    border: 3px solid gray;
+    border-radius: 15px;
+    font-size: 30px;
+    width:245px;
+}.tableHistory{
+    margin-top: 30px;
+    width: 90%;
+    margin-left:100px;
+    align-items: center;
+    
+
+}.modal-backdrop{
+    display: none;
+}
