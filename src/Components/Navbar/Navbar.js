@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import $ from "jquery";
+import Axios from "axios";
 
 const Navbar = () => {
   function animation() {
@@ -40,7 +41,26 @@ const Navbar = () => {
         animation();
       }, 500);
     });
+
+    const token = localStorage.getItem("token");
+    let axiosJWT = Axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    axiosJWT.post("http://localhost:3001/authen").then((response) => {
+      // console.log(response.data);
+      if (response.data.status !== 200) {
+        localStorage.removeItem("token");
+        window.location = "/login";
+      }
+    });
   }, []);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location = "/login";
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-mainbg">
@@ -77,7 +97,6 @@ const Navbar = () => {
               <i className="fa-solid fa-house"></i>Home
             </NavLink>
           </li>
-         
 
           <li className="nav-item">
             <NavLink className="nav-link" to="/booking" exact>
@@ -100,20 +119,20 @@ const Navbar = () => {
               <i class="fa-solid fa-user"></i>User
             </NavLink>
           </li>
-          
         </ul>
       </div>
-      
+
       <div className="btn-log">
-      <NavLink  to="/login" exact>
-      <button className="btn-log1"><i className="btn-logout" class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button>
-      </NavLink>
+        <NavLink to="/login" exact>
+          <button className="btn-log1" onClick={logout}>
+            <i
+              className="btn-logout"
+              class="fa-solid fa-arrow-right-from-bracket"
+            ></i>
+            Logout
+          </button>
+        </NavLink>
       </div>
-      
-      
-      
-      
-      
     </nav>
   );
 };

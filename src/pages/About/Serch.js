@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-import "./About.css";
+import "./Serch.css";
 
 const About = () => {
   return (
@@ -17,7 +17,6 @@ const About = () => {
         <option value="3">ONE</option>
         <option value="3">CMA-CGM</option>
         <option value="3">COSCO</option>
-
       </select>
 
       <select class="form-select">
@@ -47,20 +46,22 @@ const About = () => {
 
       <input type="date" id="calender" class="form-select" />
 
-      <div id="calenderSelect" class="form-text" style={{marginLeft:"480px"}}>
-        please select DTAE / MONT / YEAR
-      </div>
-
       <>
         <br />
         <NavLink className="nav-link" class="user" to="/serch" exact>
-        <button style={{marginLeft:"20px",width:"150px"}} type="button" class="btn btn-secondary">Serch</button>
+          <button
+            style={{ marginLeft: "20px", width: "150px" }}
+            type="button"
+            class="btn btn-secondary"
+          >
+            Serch
+          </button>
         </NavLink>
 
-        <Button style={{borderColor:"gray"}} className="button-clear">Clear</Button>
+        <Button style={{ borderColor: "gray" }} className="button-clear">
+          Clear
+        </Button>
       </>
-
-      
     </div>
   );
 };

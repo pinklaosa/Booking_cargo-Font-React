@@ -1,12 +1,11 @@
 import React from "react";
 
-
 import "./Contact.css";
 const Contact = () => {
   return (
     <div className="contact">
       <h1>Contact</h1>
-      <p style={{marginTop:"50px"}}>
+      <p style={{ marginTop: "50px" }}>
         <i class="fa-solid fa-map-location-dot"></i>Address 55/5 M.5 Sriracha
         District Chonburi province Thailand 20555
         <br />

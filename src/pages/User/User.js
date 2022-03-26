@@ -1,46 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TextField from "@mui/material/TextField";
 import "./User.css";
 import { NavLink } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Axios from "axios";
 
 const User = () => {
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  });
+  const [accountInfo, setAccountInfo] = useState([]);
+  const [edit, setEdit] = useState(true);
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [email,setEmail] = useState("");
 
- 
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    let axios = Axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
+    axios.get("http://localhost:3001/account").then((response) => {
+      if (response.data.status === 200) {
+        setAccountInfo(response.data.info);
+        setFirstName(response.data.info.firstName);
+        setLastName(response.data.info.lastName);
+        setPhoneNum(response.data.info.phoneNum);
+        setEmail(response.data.info.email);
+      }
+    });
+  }, []);
+
+  const updateInfo = () => {
+    const token = localStorage.getItem("token");
+    let axios = Axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    axios
+      .post("http://localhost:3001/updateinfo", {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNum: phoneNum,
+      })
+      .then((response) => {
+        if (response.data.status === 200) {
+          alert(response.data.msg);
+          setEdit(true);
+        }
+      });
   };
-
-  
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
- 
   return (
     <body className="ty">
       <div className="container2">
@@ -52,38 +64,46 @@ const User = () => {
       </div>
 
       <div className="container1">
-        <Box className="textBox">
+        <Box className="textBox" noValidate autoComplete="off">
           <TextField
-            id="standard-basic"
-            label="Company"
-            placeholder="Oceanfright"
-            variant="standard"
-          />
-          <br />
-          <TextField
-            id="standard-basic"
+            id="firstName"
             label="Name"
-            placeholder="Username"
             variant="standard"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            InputProps={{
+              readOnly: edit,
+            }}
           />
           <TextField
-            id="standard-basic"
             label="Surname"
             placeholder="Surname"
             variant="standard"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            InputProps={{
+              readOnly: edit,
+            }}
           />
           <br />
           <TextField
-            id="standard-basic"
             label="Phone"
             placeholder="Phone Number"
             variant="standard"
+            value={phoneNum}
+            onChange={(e) => setPhoneNum(e.target.value)}
+            InputProps={{
+              readOnly: edit,
+            }}
           />
           <TextField
-            id="standard-basic"
             label="Email"
             placeholder="Email"
             variant="standard"
+            value={email}
+            InputProps={{
+              readOnly: true,
+            }}
           />
           <br />
         </Box>
@@ -94,130 +114,121 @@ const User = () => {
             maxWidth: "75%",
           }}
         >
-          <TextField
+          {/* <TextField
             fullWidth
             label="Address"
             placeholder="Address"
             id="fullWidth"
             variant="standard"
-          />
+          /> */}
         </Box>
-        <FormControl sx={{ m: 1, width: '25ch',marginLeft:"70px" }} variant="standard">
-          <InputLabel htmlFor="standard-adornment-password">Change Password</InputLabel>
-          <Input
-            id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-       
 
-       
         <div class="col">
-        <button
-                type="button"
-                style={{
-                  marginTop: "30px",
-                  width: "150px",
-                  marginLeft: "65px",
-                }}
-                class="btn btn-secondary"
-                
-              >
-                Edit
-              </button>
+          <button
+            type="button"
+            style={{
+              marginTop: "30px",
+              width: "150px",
+              marginLeft: "65px",
+            }}
+            class="btn btn-secondary"
+            onClick={() => setEdit(false)}
+          >
+            Edit
+          </button>
 
-        <button
-                type="button"
-                style={{
-                  marginTop: "30px",
-                  width: "150px",
-                  marginLeft: "20px",
-                }}
-                class="btn btn-success"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-              >
-                Save
-              </button>
-    </div>
-    <div className="modalcolor">
-        <div
-          class="modal fade"
-          id="exampleModalCenter"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header" style={{ backgroundColor: "#2e2e2e" }}>
-                <h5
-                  class="modal-title"
-                  id="exampleModalLongTitle"
-                  style={{ color: "white", marginLeft: "110px" }}
+          <button
+            type="button"
+            style={{
+              marginTop: "30px",
+              width: "150px",
+              marginLeft: "20px",
+            }}
+            class="btn btn-success"
+            // data-toggle="modal"
+            // data-target="#exampleModalCenter"
+            onClick={updateInfo}
+          >
+            Save
+          </button>
+        </div>
+        <div className="modalcolor">
+          <div
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div
+                  class="modal-header"
+                  style={{ backgroundColor: "#2e2e2e" }}
                 >
-                  Confirm User data change
-                </h5>
-
-                <button
-                  type="button"
-                  class="btn-close btn-close-white"
-                  aria-label="Close"
-                  data-dismiss="modal"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <p
-                  style={{
-                    fontSize: "100px",
-                    textAlign: "center",
-                    
-                  }}
-                >
-                  <img style={{width:"180px",height:"180px"}} src="https://icon-library.com/images/account-settings-icon/account-settings-icon-22.jpg" alt=""></img>
-                </p>
-              </div>
-              <div class="modal-footer" style={{ backgroundColor: "#F5F5F5" }}>
-              <NavLink className="nav-link" class="user" to="/userupdate" exact>
-                  <button
-                    style={{width:"100"}}
-                    type="button"
-                    class="btn btn-success"
+                  <h5
+                    class="modal-title"
+                    id="exampleModalLongTitle"
+                    style={{ color: "white", marginLeft: "110px" }}
                   >
-                    Confirm
-                  </button>
+                    Confirm User data change
+                  </h5>
+
+                  <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    aria-label="Close"
+                    data-dismiss="modal"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p
+                    style={{
+                      fontSize: "100px",
+                      textAlign: "center",
+                    }}
+                  >
+                    <img
+                      style={{ width: "180px", height: "180px" }}
+                      src="https://icon-library.com/images/account-settings-icon/account-settings-icon-22.jpg"
+                      alt=""
+                    ></img>
+                  </p>
+                </div>
+                <div
+                  class="modal-footer"
+                  style={{ backgroundColor: "#F5F5F5" }}
+                >
+                  <NavLink
+                    className="nav-link"
+                    class="user"
+                    to="/userupdate"
+                    exact
+                  >
+                    <button
+                      style={{ width: "100" }}
+                      type="button"
+                      class="btn btn-success"
+                    >
+                      Confirm
+                    </button>
                   </NavLink>
 
-                <button
-                  style={{ marginRight: "155px", width: "100px" }}
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
+                  <button
+                    style={{ marginRight: "155px", width: "100px" }}
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
-
-    
     </body>
   );
 };

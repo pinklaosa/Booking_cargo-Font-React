@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 body {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   background: #fff; /* fallback for old browsers */
 }
 * {
@@ -26,14 +26,11 @@ i {
   position: relative;
 }
 #navbarSupportedContent ul {
-  
   padding: 0px;
   margin: 0px;
-  
 }
 #navbarSupportedContent ul li a i {
   margin-right: 10px;
-  
 }
 #navbarSupportedContent li {
   list-style-type: none;
@@ -47,8 +44,7 @@ i {
   padding: 20px 20px;
   transition-duration: 0.6s;
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  position: relative ;
-  
+  position: relative;
 }
 #navbarSupportedContent > ul > li.active > a {
   color: #000000;
@@ -56,12 +52,12 @@ i {
   transition: all 0.7s;
 }
 #navbarSupportedContent a:not(:only-child):after {
-  content: '\f105';
+  content: "\f105";
   position: absolute;
   right: 20px;
   top: 10px;
   font-size: 14px;
-  font-family: 'Font Awesome';
+  font-family: "Font Awesome";
   display: inline-block;
   padding-right: 3px;
   vertical-align: middle;
@@ -101,7 +97,7 @@ i {
 }
 .hori-selector .right:before,
 .hori-selector .left:before {
-  content: '';
+  content: "";
   position: absolute;
   width: 50px;
   height: 50px;
@@ -119,7 +115,6 @@ i {
 @media (max-width: 991px) {
   #navbarSupportedContent ul li a {
     padding: 12px 30px;
-    
   }
   .hori-selector {
     margin-top: 0px;
@@ -147,13 +142,10 @@ i {
     bottom: -25px;
     left: -25px;
   }
-
-}.btn-log1{
-  background-color:transparent;
+}
+.btn-log1 {
+  background-color: transparent;
   color: #f8f8f8;
-  margin-right:20px;
+  margin-right: 20px;
   border: none;
 }
-
-
-  
