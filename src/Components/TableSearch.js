@@ -22,7 +22,6 @@ const TableSearch = (props) => {
     }).then((response) => {
       if (response.data.status === 200) {
         setServiceData(response.data.result);
-        console.log(response.data.result);
       }
     });
   }, [ship, destination, date]);
