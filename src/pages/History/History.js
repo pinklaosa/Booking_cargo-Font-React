@@ -136,7 +136,9 @@ const Services = () => {
                     </div>
                   </td>
                   <td>
-                    {h.bookingStatus !== "paid" ? (
+                    {h.bookingStatus !== "pending" ? (
+                      <div>{h.bookingStatus}</div>
+                    ) : (
                       <div style={{ marginTop: "10px" }}>
                         <label htmlFor="contained-button-file">
                           <input
@@ -199,8 +201,6 @@ const Services = () => {
                           </button>
                         </div>
                       </div>
-                    ) : (
-                      <div>Paid</div>
                     )}
                   </td>
                   <td>
