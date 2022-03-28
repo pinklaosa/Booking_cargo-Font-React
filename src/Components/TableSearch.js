@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 const TableSearch = (props) => {
   const { ship, destination, date } = props;
   const [serviceData, setServiceData] = useState([]);
+
   // console.log(ship , country , shipment, destination);
   const reformatDate = (datetime) =>
     datetime.getFullYear() +
@@ -49,7 +50,11 @@ const TableSearch = (props) => {
                 <th className="row1">
                   <div className="d-flex align-item-center">
                     <img
-                      src={"/logo_service/logo_service/"+data.serviceName+".png"}
+                      src={
+                        "/logo_service/logo_service/" +
+                        data.serviceName +
+                        ".png"
+                      }
                       alt=""
                       style={{
                         width: "40px",
