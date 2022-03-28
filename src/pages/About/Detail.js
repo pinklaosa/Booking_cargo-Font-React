@@ -16,7 +16,8 @@ function Detail() {
   const [formFields, setFormFields] = useState([{ name: "", age: "" }]);
   const [serviceSelected, setServiceSelected] = useState([]);
   const [typeContainer, setTypeContainer] = useState("");
-  const [time,setTime] = useState();
+  const [container, setContainer] = useState([]);
+  const [time, setTime] = useState();
 
   let { id } = useParams();
   const reformatDate = (datetime) =>
@@ -36,6 +37,12 @@ function Detail() {
           setServiceSelected(response.data.result);
         }
       });
+
+    axios.get("http://localhost:3001/container").then((response) => {
+      if (response.data.status === 200) {
+        setContainer(response.data.result);
+      }
+    });
   }, [id]);
 
   const handleFormChange = (event, index) => {
@@ -58,7 +65,8 @@ function Detail() {
         container: formFields,
         type: typeContainer,
         serviceId: id,
-        time:time,
+        time: time,
+        price: container,
       })
       .then((response) => {
         if (response.data.status === 200) {
@@ -110,7 +118,11 @@ function Detail() {
                   <th className="row1">
                     <div className="d-flex align-item-center">
                       <img
-                        src={"/logo_service/logo_service/"+serviceSelected[0].serviceName+".png"}
+                        src={
+                          "/logo_service/logo_service/" +
+                          serviceSelected[0].serviceName +
+                          ".png"
+                        }
                         alt=""
                         style={{
                           marginLeft: 15,
@@ -224,7 +236,6 @@ function Detail() {
                         className="fw-bold mb-1"
                         style={{ marginLeft: "20px" }}
                       >
-                        
                         Container Quantity
                       </label>
                       <input

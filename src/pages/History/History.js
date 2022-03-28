@@ -136,7 +136,7 @@ const Services = () => {
                     </div>
                   </td>
                   <td>
-                    {h.bookingStatus !== "pending" ? (
+                    {h.bookingStatus !== "waiting payment" ? (
                       <div>{h.bookingStatus}</div>
                     ) : (
                       <div style={{ marginTop: "10px" }}>
@@ -193,6 +193,7 @@ const Services = () => {
                                 .then((response) => {
                                   if (response.data.status === 200) {
                                     alert("Upload payment successfully");
+                                    window.location = "/history";
                                   }
                                 });
                             }}
