@@ -41,7 +41,9 @@ function Detail() {
     axios.get("http://localhost:3001/container").then((response) => {
       if (response.data.status === 200) {
         setContainer(response.data.result);
+        console.log(response.data.result);
       }
+      
     });
   }, [id]);
 
